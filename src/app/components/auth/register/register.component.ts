@@ -9,7 +9,7 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { PageLayoutComponent } from '../../layout/page/page-layout.component';
 
 @Component({
@@ -18,7 +18,6 @@ import { PageLayoutComponent } from '../../layout/page/page-layout.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    RouterLink,
     PageLayoutComponent,
     MatFormFieldModule,
     MatInputModule,
