@@ -1,1 +1,7 @@
-<p>search works!</p>
+<input
+  name="search"
+  [(ngModel)]="term"
+  (ngModelChange)="search.emit(term)"
+  placeholder="Buscar productos"
+  class="search-input"
+/>
