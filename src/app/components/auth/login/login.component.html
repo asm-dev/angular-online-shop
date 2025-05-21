@@ -1,1 +1,42 @@
-<p>login works!</p>
+<app-page-layout>
+  <form
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+    class="login-form"
+    novalidate
+  >
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" type="email" required />
+      <mat-error *ngIf="email?.hasError('required')"
+        >Campo obligatorio</mat-error
+      >
+      <mat-error *ngIf="email?.hasError('email')">Formato inválido</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Contraseña</mat-label>
+      <input matInput formControlName="password" type="password" required />
+      <mat-error *ngIf="password?.hasError('required')"
+        >Campo obligatorio</mat-error
+      >
+      <mat-error *ngIf="password?.hasError('minlength')">
+        Mínimo 6 caracteres
+      </mat-error>
+    </mat-form-field>
+
+    <button
+      mat-flat-button
+      color="primary"
+      type="submit"
+      [disabled]="form.invalid"
+    >
+      Continuar
+    </button>
+
+    <div class="register-link">
+      ¿No tienes cuenta?
+      <a routerLink="/login/register">Regístrate</a>
+    </div>
+  </form>
+</app-page-layout>
