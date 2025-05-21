@@ -1,8 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard } from '../../guards/auth.guard';
 import { BasketPageComponent } from './basket-page/basket-page.component';
-import { CheckoutComponent } from './checkout/checkout.component';
-import { ConfirmationComponent } from './confirmation/confirmation.component';
 
 export const routes: Routes = [
   {
@@ -12,12 +10,16 @@ export const routes: Routes = [
   },
   {
     path: 'checkout',
-    component: CheckoutComponent,
+    loadComponent: () =>
+      import('./checkout/payment.component').then((m) => m.PaymentComponent),
     canActivate: [authGuard],
   },
   {
     path: 'confirmation',
-    component: ConfirmationComponent,
+    loadComponent: () =>
+      import('./confirmation/confirmation.component').then(
+        (m) => m.ConfirmationComponent
+      ),
     canActivate: [authGuard],
   },
 ];

@@ -1,0 +1,39 @@
+<app-page-layout>
+  <h2>Pago</h2>
+
+  <form class="form" (ngSubmit)="pay()">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Número de tarjeta</mat-label>
+      <input matInput [(ngModel)]="cardNumber" name="cardNumber" required />
+    </mat-form-field>
+
+    <div class="row">
+      <mat-form-field appearance="outline" class="half">
+        <mat-label>Fecha caducidad</mat-label>
+        <input
+          matInput
+          [(ngModel)]="expiry"
+          name="expiry"
+          required
+          placeholder="MM/AA"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="half">
+        <mat-label>CVC</mat-label>
+        <input matInput [(ngModel)]="cvc" name="cvc" required />
+      </mat-form-field>
+    </div>
+
+    <button
+      mat-flat-button
+      color="primary"
+      class="full-width"
+      [disabled]="loading"
+    >
+      {{ loading ? "Procesando..." : "Pagar" }}
+    </button>
+
+    <mat-spinner *ngIf="loading" diameter="40" class="spinner" />
+  </form>
+</app-page-layout>
