@@ -7,6 +7,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { CartActions } from '../../../store/actions/cart.actions';
@@ -50,13 +51,15 @@ export class BasketPageComponent {
     accepted: false,
   };
 
+  constructor(private router: Router) {}
+
   remove(productId: number): void {
     this.store.dispatch(CartActions.removeItem({ productId }));
   }
 
   submit(): void {
     if (this.form.accepted) {
-      console.log('Formulario enviado', this.form);
+      this.router.navigate(['/basket/checkout']);
     } else {
       alert('Debe aceptar los términos antes de continuar.');
     }

@@ -1,7 +1,8 @@
 {
   "id": 1,
-  "title": "Producto A",
+  "title": "Mens Casual Premium Slim Fit T-Shirts",
   "price": 22.3,
-  "image": "https://example.com/image.jpg",
-  "description": "Descripción de prueba del producto A"
+  "description": "Comfortable and stylish t-shirt made of soft cotton.",
+  "category": "men's clothing",
+  "image": "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg"
 }
