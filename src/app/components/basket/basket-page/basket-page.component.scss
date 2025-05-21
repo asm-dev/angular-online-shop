@@ -1,0 +1,37 @@
+.basket-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding-top: 2rem;
+}
+
+.products {
+  flex: 1;
+  min-width: 300px;
+
+  .cart-item {
+    margin-bottom: 1rem;
+  }
+
+  .total {
+    font-size: 1.2rem;
+    text-align: right;
+    margin-top: 1rem;
+  }
+}
+
+.form {
+  flex: 1;
+  min-width: 300px;
+
+  .full-width {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .basket-container {
+    flex-direction: column;
+  }
+}

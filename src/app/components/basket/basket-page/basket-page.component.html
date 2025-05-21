@@ -1,1 +1,72 @@
-<p>basket-page works!</p>
+<app-page-layout>
+  <div class="basket-container">
+    <!-- Columna 1: Productos -->
+    <div class="products">
+      <mat-card *ngFor="let item of cartItems" class="cart-item">
+        <mat-card-title>{{ item.name }}</mat-card-title>
+        <mat-card-content>
+          <p>Cantidad: {{ item.quantity }}</p>
+          <p>
+            Precio unitario:
+            {{ item.price | currency : "EUR" : "symbol" : "1.2-2" : "es-ES" }}
+          </p>
+          <p>
+            Total:
+            {{
+              item.price * item.quantity
+                | currency : "EUR" : "symbol" : "1.2-2" : "es-ES"
+            }}
+          </p>
+        </mat-card-content>
+      </mat-card>
+
+      <div class="total">
+        Total:
+        <strong>{{
+          total | currency : "EUR" : "symbol" : "1.2-2" : "es-ES"
+        }}</strong>
+      </div>
+    </div>
+
+    <!-- Columna 2: Formulario -->
+    <div class="form">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Nombre</mat-label>
+        <input matInput [(ngModel)]="form.firstName" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Apellido</mat-label>
+        <input matInput [(ngModel)]="form.lastName" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Dirección</mat-label>
+        <input matInput [(ngModel)]="form.address" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Código Postal</mat-label>
+        <input matInput [(ngModel)]="form.postalCode" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Teléfono</mat-label>
+        <input matInput [(ngModel)]="form.phone" />
+      </mat-form-field>
+
+      <mat-checkbox [(ngModel)]="form.accepted"
+        >Acepto los términos</mat-checkbox
+      >
+
+      <button
+        mat-flat-button
+        color="primary"
+        class="full-width"
+        (click)="submit()"
+      >
+        Finalizar compra
+      </button>
+    </div>
+  </div>
+</app-page-layout>
