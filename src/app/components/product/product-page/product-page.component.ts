@@ -1,23 +1,15 @@
-import { CommonModule, CurrencyPipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
-import { RouterLink } from '@angular/router';
+
 import { Product } from '../../../interfaces/product.interface';
-import { TruncatePipe } from '../../../pipes/truncate.pipe';
 import { ProductService } from '../../../services/product.service';
 import { PageLayoutComponent } from '../../layout/page/page-layout.component';
+import { ProductCardComponent } from '../product-card/product-card.component';
 
 @Component({
   selector: 'app-product-page',
   standalone: true,
-  imports: [
-    CommonModule,
-    CurrencyPipe,
-    RouterLink,
-    PageLayoutComponent,
-    MatCardModule,
-    TruncatePipe,
-  ],
+  imports: [CommonModule, PageLayoutComponent, ProductCardComponent],
   templateUrl: './product-page.component.html',
   styleUrls: ['./product-page.component.scss'],
 })

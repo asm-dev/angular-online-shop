@@ -1,0 +1,8 @@
+<mat-card class="product-card" [routerLink]="['/product', product.id]">
+  <img mat-card-image [src]="product.image" [alt]="product.title" />
+
+  <mat-card-content>
+    <h3>{{ product.title | truncate : 60 }}</h3>
+    <p>{{ product.price | currency : "EUR" : "symbol" : "1.2-2" : "es-ES" }}</p>
+  </mat-card-content>
+</mat-card>

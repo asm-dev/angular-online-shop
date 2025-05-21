@@ -2,18 +2,6 @@
   <h2>Productos</h2>
 
   <div class="grid">
-    <mat-card
-      class="product-card"
-      *ngFor="let product of products"
-      [routerLink]="['/product', product.id]"
-    >
-      <img mat-card-image [src]="product.image" [alt]="product.title" />
-      <mat-card-content>
-        <h3>{{ product.title | truncate : 50 }}</h3>
-        <p>
-          {{ product.price | currency : "EUR" : "symbol" : "1.2-2" : "es-ES" }}
-        </p>
-      </mat-card-content>
-    </mat-card>
+    <app-product-card *ngFor="let product of products" [product]="product" />
   </div>
 </app-page-layout>
