@@ -1,1 +1,27 @@
-<p>product-details works!</p>
+<app-page-layout>
+  <div class="details-container" *ngIf="product">
+    <img [src]="product.image" [alt]="product.title" />
+
+    <div class="info">
+      <h2>{{ product.title }}</h2>
+      <p class="price">
+        {{ product.price | currency : "EUR" : "symbol" : "1.2-2" : "es-ES" }}
+      </p>
+      <p class="description">{{ product.description }}</p>
+
+      <mat-form-field appearance="fill" class="quantity">
+        <mat-label>Cantidad</mat-label>
+        <select matNativeControl [(ngModel)]="quantity">
+          <option *ngFor="let qty of [1, 2, 3, 4, 5]" [value]="qty">
+            {{ qty }}
+          </option>
+        </select>
+      </mat-form-field>
+
+      <button mat-flat-button color="primary" (click)="addToCart()">
+        <mat-icon>add_shopping_cart</mat-icon>
+        Añadir al carrito
+      </button>
+    </div>
+  </div>
+</app-page-layout>

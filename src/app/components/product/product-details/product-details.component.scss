@@ -1,0 +1,37 @@
+.details-container {
+  display: flex;
+  gap: 2rem;
+  padding-top: 2rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+
+  img {
+    max-width: 300px;
+    width: 100%;
+    object-fit: contain;
+  }
+
+  .info {
+    flex: 1;
+    min-width: 250px;
+
+    h2 {
+      margin: 0 0 1rem;
+    }
+
+    .price {
+      font-size: 1.25rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .description {
+      margin-bottom: 1rem;
+    }
+
+    .quantity {
+      width: 120px;
+      margin-bottom: 1rem;
+    }
+  }
+}
