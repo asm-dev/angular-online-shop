@@ -7,7 +7,13 @@
   >
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Email</mat-label>
-      <input matInput formControlName="email" type="email" required />
+      <input
+        matInput
+        formControlName="email"
+        type="email"
+        name="email"
+        required
+      />
       <mat-error *ngIf="email?.hasError('required')"
         >Campo obligatorio</mat-error
       >
@@ -16,7 +22,13 @@
 
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Contraseña</mat-label>
-      <input matInput formControlName="password" type="password" required />
+      <input
+        matInput
+        formControlName="password"
+        type="password"
+        name="password"
+        required
+      />
       <mat-error *ngIf="password?.hasError('required')"
         >Campo obligatorio</mat-error
       >
