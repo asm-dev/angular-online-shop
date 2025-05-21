@@ -1,0 +1,13 @@
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding-top: 2rem;
+}
+
+.full-width {
+  width: 100%;
+}
