@@ -1,11 +1,20 @@
 import { CommonModule, CurrencyPipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { CartActions } from '../../../store/actions/cart.actions';
+import { CartItem } from '../../../store/reducers/cart.reducer';
+import {
+  selectCartItems,
+  selectCartTotal,
+} from '../../../store/selectors/cart.selectors';
 import { PageLayoutComponent } from '../../layout/page/page-layout.component';
 
 @Component({
@@ -21,15 +30,16 @@ import { PageLayoutComponent } from '../../layout/page/page-layout.component';
     MatCheckboxModule,
     MatButtonModule,
     CurrencyPipe,
+    MatIconModule,
   ],
   templateUrl: './basket-page.component.html',
   styleUrls: ['./basket-page.component.scss'],
 })
 export class BasketPageComponent {
-  cartItems = [
-    { name: 'Producto A', quantity: 1, price: 25 },
-    { name: 'Producto B', quantity: 2, price: 15 },
-  ];
+  private store = inject(Store);
+
+  cartItems$: Observable<CartItem[]> = this.store.select(selectCartItems);
+  total$: Observable<number> = this.store.select(selectCartTotal);
 
   form = {
     firstName: '',
@@ -40,11 +50,8 @@ export class BasketPageComponent {
     accepted: false,
   };
 
-  get total(): number {
-    return this.cartItems.reduce(
-      (acc, item) => acc + item.price * item.quantity,
-      0
-    );
+  remove(productId: number): void {
+    this.store.dispatch(CartActions.removeItem({ productId }));
   }
 
   submit(): void {

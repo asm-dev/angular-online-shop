@@ -1,35 +1,55 @@
 <app-page-layout>
   <div class="basket-container">
-    <!-- Columna 1: Productos -->
     <div class="products">
-      <mat-card *ngFor="let item of cartItems" class="cart-item">
-        <mat-card-title>{{ item.name }}</mat-card-title>
-        <mat-card-content>
-          <p>Cantidad: {{ item.quantity }}</p>
-          <p>
-            Precio unitario:
-            {{ item.price | currency : "EUR" : "symbol" : "1.2-2" : "es-ES" }}
-          </p>
-          <p>
-            Total:
-            {{
-              item.price * item.quantity
-                | currency : "EUR" : "symbol" : "1.2-2" : "es-ES"
-            }}
-          </p>
-        </mat-card-content>
+      <h3>Productos seleccionados</h3>
+
+      <mat-card *ngFor="let item of cartItems$ | async" class="cart-item">
+        <div class="item-content">
+          <img [src]="item.product.image" [alt]="item.product.title" />
+          <div class="item-info">
+            <div class="title-bar">
+              <mat-card-title>{{ item.product.title }}</mat-card-title>
+              <button
+                mat-icon-button
+                color="warn"
+                aria-label="Eliminar"
+                (click)="remove(item.product.id)"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+            <mat-card-content>
+              <p>Cantidad: {{ item.quantity }}</p>
+              <p>
+                Precio unitario:
+                {{
+                  item.product.price
+                    | currency : "EUR" : "symbol" : "1.2-2" : "es-ES"
+                }}
+              </p>
+              <p>
+                Total:
+                {{
+                  item.product.price * item.quantity
+                    | currency : "EUR" : "symbol" : "1.2-2" : "es-ES"
+                }}
+              </p>
+            </mat-card-content>
+          </div>
+        </div>
       </mat-card>
 
       <div class="total">
         Total:
         <strong>{{
-          total | currency : "EUR" : "symbol" : "1.2-2" : "es-ES"
+          total$ | async | currency : "EUR" : "symbol" : "1.2-2" : "es-ES"
         }}</strong>
       </div>
     </div>
 
-    <!-- Columna 2: Formulario -->
     <div class="form">
+      <h3>Datos de envío</h3>
+
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Nombre</mat-label>
         <input matInput [(ngModel)]="form.firstName" />
@@ -62,7 +82,7 @@
       <button
         mat-flat-button
         color="primary"
-        class="full-width"
+        class="full-width primary-button"
         (click)="submit()"
       >
         Finalizar compra

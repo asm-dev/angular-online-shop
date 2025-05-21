@@ -6,8 +6,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Product } from '../../../interfaces/product.interface';
 import { ProductService } from '../../../services/product.service';
+import { CartActions } from '../../../store/actions/cart.actions';
 import { PageLayoutComponent } from '../../layout/page/page-layout.component';
 
 @Component({
@@ -31,6 +33,7 @@ export class ProductDetailsComponent implements OnInit {
 
   private route = inject(ActivatedRoute);
   private productService = inject(ProductService);
+  private store = inject(Store);
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -41,7 +44,13 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   addToCart(): void {
-    console.log('Añadir al carrito:', this.product, 'Cantidad:', this.quantity);
-    // TODO: dispatch a NgRx
+    if (!this.product) return;
+
+    this.store.dispatch(
+      CartActions.addItem({
+        product: this.product,
+        quantity: this.quantity,
+      })
+    );
   }
 }
