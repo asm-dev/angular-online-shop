@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-tooltip',
-  imports: [],
+  standalone: true,
+  imports: [MatToolbarModule, MatButtonModule, RouterLink],
   templateUrl: './tooltip.component.html',
-  styleUrl: './tooltip.component.scss'
+  styleUrls: ['./tooltip.component.scss'],
 })
-export class TooltipComponent {
-
-}
+export class TooltipComponent {}
