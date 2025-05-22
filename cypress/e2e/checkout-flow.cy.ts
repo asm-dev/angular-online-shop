@@ -45,14 +45,16 @@ describe('Checkout flow', () => {
     cy.get('input[name="address"]').type('123 Main St');
     cy.get('input[name="postalCode"]').type('12345');
     cy.get('input[name="phone"]').type('123456789');
-    cy.get('mat-checkbox').click();
+    cy.get('mat-checkbox input').check({ force: true });
     cy.contains('Finalizar compra').click();
 
     // Pago
     cy.url().should('include', '/basket/checkout');
-    cy.get('input[name="cardNumber"]').type('4999999999999999');
-    cy.get('input[name="expiry"]').type('12/29');
-    cy.get('input[name="cvc"]').type('123');
+    cy.get('input[name="cardNumber"]').type('4999999999999999', {
+      force: true,
+    });
+    cy.get('input[name="expiry"]').type('12/29', { force: true });
+    cy.get('input[name="cvc"]').type('123', { force: true });
     cy.contains('Pagar').click();
 
     // Confirmación
