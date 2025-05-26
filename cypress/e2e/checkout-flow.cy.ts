@@ -37,7 +37,7 @@ describe('Checkout flow', () => {
     cy.contains('Añadir al carrito').click();
 
     // Ir a la cesta
-    cy.contains('Cesta').click();
+    cy.get('a[aria-label="Cesta"]').click();
 
     // Formulario de envío
     cy.get('input[name="firstName"]').type('John');
