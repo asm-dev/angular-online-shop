@@ -8,3 +8,4 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 
 `npm run e2e`
 
+![image](https://github.com/user-attachments/assets/b8d3ea34-79a2-4407-818a-7ed3ec39b0a8)
