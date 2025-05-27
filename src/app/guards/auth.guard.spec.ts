@@ -1,17 +1,51 @@
+import { runInInjectionContext } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { CanActivateFn } from '@angular/router';
-
+import {
+  ActivatedRouteSnapshot,
+  Router,
+  RouterStateSnapshot,
+  UrlTree,
+} from '@angular/router';
 import { authGuard } from './auth.guard';
 
 describe('authGuard', () => {
-  const executeGuard: CanActivateFn = (...guardParameters) => 
-      TestBed.runInInjectionContext(() => authGuard(...guardParameters));
+  let routerSpy: jasmine.SpyObj<Router>;
+
+  const routeMock = {} as ActivatedRouteSnapshot;
+  const stateMock = {} as RouterStateSnapshot;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    routerSpy = jasmine.createSpyObj<Router>('Router', ['createUrlTree']);
+    routerSpy.createUrlTree.and.callFake((commands: any[]) => {
+      return { redirectedTo: commands } as unknown as UrlTree;
+    });
+
+    TestBed.configureTestingModule({
+      providers: [{ provide: Router, useValue: routerSpy }],
+    });
+
+    sessionStorage.clear();
   });
 
-  it('should be created', () => {
-    expect(executeGuard).toBeTruthy();
+  it('should allow access when user is in sessionStorage', () => {
+    sessionStorage.setItem(
+      'user',
+      JSON.stringify({ email: 'test@example.com' })
+    );
+
+    const result = runInInjectionContext(TestBed, () =>
+      authGuard(routeMock, stateMock)
+    );
+
+    expect(result).toBeTrue();
+  });
+
+  it('should redirect to /login when no user in sessionStorage', () => {
+    const result = runInInjectionContext(TestBed, () =>
+      authGuard(routeMock, stateMock)
+    );
+
+    expect(routerSpy.createUrlTree).toHaveBeenCalledWith(['/login']);
+    expect((result as any).redirectedTo).toEqual(['/login']);
   });
 });

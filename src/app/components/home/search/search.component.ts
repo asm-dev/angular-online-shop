@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class SearchComponent implements OnInit {
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    // No initialization logic needed
   }
   term = '';
   @Output() search = new EventEmitter<string>();

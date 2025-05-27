@@ -7,10 +7,12 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "test:headless": "ng test --browsers ChromeHeadless --watch=false",
     "e2e": "cypress open"
   },
   "private": true,
   "dependencies": {
+    "@angular/animations": "^19.2.11",
     "@angular/cdk": "^19.2.16",
     "@angular/common": "^19.2.0",
     "@angular/compiler": "^19.2.0",

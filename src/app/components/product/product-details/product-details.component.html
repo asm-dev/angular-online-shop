@@ -11,11 +11,11 @@
 
       <mat-form-field appearance="fill" class="quantity">
         <mat-label>Cantidad</mat-label>
-        <select matNativeControl [(ngModel)]="quantity">
-          <option *ngFor="let qty of [1, 2, 3, 4, 5]" [value]="qty">
+        <mat-select [(ngModel)]="quantity">
+          <mat-option *ngFor="let qty of [1, 2, 3, 4, 5]" [value]="qty">
             {{ qty }}
-          </option>
-        </select>
+          </mat-option>
+        </mat-select>
       </mat-form-field>
 
       <button mat-flat-button color="primary" (click)="addToCart()">
