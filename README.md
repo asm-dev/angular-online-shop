@@ -46,7 +46,7 @@ Este es un proyecto técnico incremental desarrollado como parte del Máster en 
 
 ![image](https://github.com/user-attachments/assets/b8d3ea34-79a2-4407-818a-7ed3ec39b0a8)
 
-## Recomendaciones para evaluación
+## Recomendaciones para la evaluación
 
 Aunque las pruebas E2E validan el flijo completo de compra, si quieres probar a navegar en el sitio te invito a:
 
