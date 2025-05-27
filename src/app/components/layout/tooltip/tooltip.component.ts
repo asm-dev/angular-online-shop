@@ -1,9 +1,10 @@
+import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-tooltip',
@@ -14,8 +15,20 @@ import { RouterModule } from '@angular/router';
     MatMenuModule,
     MatButtonModule,
     RouterModule,
+    NgIf,
   ],
   templateUrl: './tooltip.component.html',
   styleUrls: ['./tooltip.component.scss'],
 })
-export class TooltipComponent {}
+export class TooltipComponent {
+  constructor(private router: Router) {}
+
+  get isLoggedIn(): boolean {
+    return !!sessionStorage.getItem('user');
+  }
+
+  logout(): void {
+    sessionStorage.removeItem('user');
+    this.router.navigate(['/login']);
+  }
+}
