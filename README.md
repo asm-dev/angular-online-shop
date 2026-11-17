@@ -1,56 +1,56 @@
-# Proyecto de tienda online
+# Online store project
 
-Este es un proyecto técnico incremental desarrollado como parte del Máster en Desarrollo Web de la UEM. Está creado con Angular 19, Angular Material y NgRx, siguiendo los principios de Clean Code y buenas prácticas. El objetivo principal de la actividad es construir una tienda online modular, mantenible, y correctamente testeada.
+This is an incremental technical project developed as part of the Master's in Web Development at UEM. It is built with Angular 19, Angular Material and NgRx, following Clean Code principles and best practices. The main goal of the activity is to build a modular, maintainable and properly tested online store.
 
 ![image](https://github.com/user-attachments/assets/ed3acda5-41d4-4bca-a73a-4dee5a8b3ede)
 
-## Requerimientos
+## Requirements
 
-1. **Estructura de componentes y diseño responsive**:
+1. **Component structure and responsive design**:
 
-   - Componentes como `tooltip`, `footer`, `home`, `product`, `basket`, `checkout`, `confirmation` están organizados de forma modular.
-   - Diseño adaptable móvil/escritorio con menús condicionales (`mat-menu` y `mat-toolbar`), estilos fluidos (`vh`, media queries).
-   - Componente `tooltip` con imagen de fondo representativa, logo responsivo, y menús adaptados a la resolución.
+   - Components such as `tooltip`, `footer`, `home`, `product`, `basket`, `checkout`, `confirmation` are organized modularly.
+   - Mobile/desktop adaptive design with conditional menus (`mat-menu` and `mat-toolbar`), fluid styles (`vh`, media queries).
+   - `tooltip` component with a representative background image, responsive logo, and menus adapted to the resolution.
 
-2. **Routing y navegación**:
+2. **Routing and navigation**:
 
-   - Rutas organizadas por feature (`auth.routes.ts`, `product.routes.ts`, etc.) y agrupadas en `app.routes.ts` para lazy loading.
-   - Navegación funcional a través de `RouterLink`, `router-outlet`, y navegación condicional basada en login.
+   - Routes organized by feature (`auth.routes.ts`, `product.routes.ts`, etc.) and grouped in `app.routes.ts` for lazy loading.
+   - Functional navigation through `RouterLink`, `router-outlet`, and conditional navigation based on login.
 
-3. **Login, registro y sesión**:
+3. **Login, registration and session**:
 
-   - Formulario de login y registro con validaciones reactivas.
-   - Persistencia de datos de sesión en `sessionStorage`.
-   - Redirecciones post-login al `home`.
+   - Login and registration form with reactive validations.
+   - Session data persistence in `sessionStorage`.
+   - Post-login redirects to `home`.
 
-4. **Gestión de estado global con NgRx**:
+4. **Global state management with NgRx**:
 
-   - Store configurado con estructura limpia: `actions`, `reducers`, `effects`, `selectors`.
-   - Persistencia de la cesta en `localStorage` para mantener estado tras recargas.
-   - Selección de productos y actualización reactiva del carrito mediante acciones.
+   - Store configured with a clean structure: `actions`, `reducers`, `effects`, `selectors`.
+   - Basket persistence in `localStorage` to keep state after reloads.
+   - Product selection and reactive cart updates through actions.
 
-5. **Integración con API externa**:
+5. **External API integration**:
 
-   - Datos de productos obtenidos de [FakeStoreAPI](https://fakestoreapi.com/docs).
-   - Servicio `ProductService` con HttpClient e interceptación en tests.
+   - Product data obtained from [FakeStoreAPI](https://fakestoreapi.com/docs).
+   - `ProductService` service with HttpClient and interception in tests.
 
-6. **Carrito de compra y proceso de pago**:
+6. **Shopping cart and payment process**:
 
-   - Cesta con resumen de productos, formulario de envío y botón de compra.
-   - Página de `checkout` con validación de tarjeta simulada.
-   - Comprobación de pago con loading y redirección a `confirmation`.
+   - Basket with product summary, shipping form and purchase button.
+   - `checkout` page with simulated card validation.
+   - Payment check with loading and redirect to `confirmation`.
 
 7. **Testing**:
-   - Unit tests para componentes y servicios.
-   - E2E tests en Cypress (`checkout-flow.cy.ts`) que simulan un flow de compra.
+   - Unit tests for components and services.
+   - E2E tests in Cypress (`checkout-flow.cy.ts`) that simulate a purchase flow.
 
 ![image](https://github.com/user-attachments/assets/b8d3ea34-79a2-4407-818a-7ed3ec39b0a8)
 
-## Recomendaciones para la evaluación
+## Evaluation recommendations
 
-Aunque las pruebas E2E validan el flijo completo de compra, si quieres probar a navegar en el sitio te invito a:
+Although the E2E tests validate the complete purchase flow, if you want to try navigating the site yourself, I invite you to:
 
-- Verificar el comportamiento responsive (toolbar adaptativo, diseño móvil).
-- Añadir 3 productos al carrito y completa el checkout con datos válidos (4999...).
-- Inspeccionar el `sessionStorage` y `localStorage` para ver cómo se persiste el estado de inicio del sesión.
-- Consultar la store con DevTools de NgRx para comprobar el flujo de acciones.
+- Check the responsive behavior (adaptive toolbar, mobile layout).
+- Add 3 products to the cart and complete the checkout with valid data (4999...).
+- Inspect `sessionStorage` and `localStorage` to see how the login state is persisted.
+- Query the store with NgRx DevTools to check the flow of actions.
